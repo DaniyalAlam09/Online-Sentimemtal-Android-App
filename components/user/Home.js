@@ -5,12 +5,12 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
-  Pressable,
-  Modal,
+  TouchableHighlight,
 } from "react-native";
 import { useState, useEffect } from "react/cjs/react.development";
 import Login from "./Login";
 import axios from "axios";
+import Styles from "./Style";
 
 function Home({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -52,33 +52,31 @@ function Home({ navigation }) {
         </Text>
       </TouchableOpacity>
       {product.map((product, index) => (
-        <div key={index} class=" col-md-6 col-lg-3">
-          <div
-            class="border mb-4 p-3 card-hover"
+        <View key={index}>
+          <View
             style={{
               height: "380px",
               borderRadius: "5px",
               // backgroundColor: " rgba(236, 235, 235, 0.137)",
             }}
           >
-            <div className="text -center">
+            <View className="text -center">
               <img
                 src={`http://localhost:4000/${product.product_image}`}
                 style={{
                   height: "200px",
                   width: "200px",
                 }}
-                class="product-image"
                 alt="Laptop"
               />
-            </div>
+            </View>
 
-            <div class="negativemargine">
-              <div class="d-flex justify-content-between">
-                <p class="small">
-                  <a class="text-muted">{`${product.product_brand}`}</a>
+            <View>
+              <View>
+                <p>
+                  <a>{`${product.product_brand}`}</a>
                 </p>
-                <p class="small text-danger">
+                <p>
                   {product.discounted_price && (
                     <s
                       style={{
@@ -88,17 +86,11 @@ function Home({ navigation }) {
                   )}
                   <s></s>
                 </p>
-              </div>
+              </View>
 
-              <div class="d-flex justify-content-between mb-3">
-                <p
-                  className="product-name"
-                  // class="mb-0"
-                >{`${product.product_name}`}</p>
-                <p
-                  className="product-price"
-                  // class="text-dark mb-0"
-                >
+              <View>
+                <p>{`${product.product_name}`}</p>
+                <p>
                   {product.discounted_price && (
                     <s>{`${product.discounted_price}`}</s>
                   )}
@@ -106,16 +98,14 @@ function Home({ navigation }) {
                     <s>{`${product.product_price}`}</s>
                   )}
                 </p>
-              </div>
+              </View>
 
-              <div class="d-flex justify-content-between">
-                <p class="rating text-muted">
-                  Stock: {`${product.product_stoke}`}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+              <View>
+                <p>Stock: {`${product.product_stoke}`}</p>
+              </View>
+            </View>
+          </View>
+        </View>
       ))}
     </View>
   );
